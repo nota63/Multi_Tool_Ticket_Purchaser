@@ -1,0 +1,185 @@
+# tutorials
+
+import phonenumbers
+from phonenumbers import geocoder, carrier
+import time
+import os
+import pandas as pd
+import random
+import string
+import turtle
+
+class Ticket:
+    def __init__(self):
+        self.tickets = []
+
+    def purchase_ticket_express(self):
+        try:
+            data = {'Express': ['first class', 'second_class', 'third class'],
+                    'Price': [100, 70, 50]}
+            ui = pd.DataFrame(data)
+            print(ui)
+            user = int(input('Enter ticket price to purchase:'))
+            print(f" Ticket Of Rupees {user} Purchased Success!")
+            self.tickets.append(user)
+            print(f'Ticket "{user}" added successfully to your wallet')
+        except ValueError:
+            print('Error occurred in value!')
+
+    def purchase_ticket_local(self):
+        try:
+            data2 = {'Local': ['first_class', 'second_class', 'third_class'],
+                     'Price': [50, 30, 20]}
+            uy = pd.DataFrame(data2)
+            print(uy)
+            user = int(input('Enter Price to Purchase:'))
+            print(f"Ticket Of rupees '{user}' Purchased Successfully!")
+            self.tickets.append(user)
+            print(f'Ticket "{user}" has been added to your wallet')
+        except ValueError:
+            print('ValueError Occurred')
+
+    def purchase_ticket_high_speed(self):
+        try:
+            data3 = {'HighSpeed': ['first_class', 'second_class', 'towards_Engine (speed= 250KMH)'],
+                     'Price': [120, 80, 600]}
+            ul = pd.DataFrame(data3)
+            print(ul)
+            user = int(input('Enter Ticket_Price to purhase:'))
+            print(f' Ticket Of Rupees "{user}" Purchased Successfully!')
+        except ValueError:
+            print('ValueError Has been occurred!')
+
+    def view_wallet(self):
+        if self.tickets:
+            for ticket in self.tickets:
+                print('Your Wallet Opened success.')
+                print(ticket)
+
+
+    def identify_number(self):
+      try:
+         phone_input=input('Enter phone number to identify:')
+         phone_input=phonenumbers.parse()
+         print(phone_input)
+         country=geocoder.description_for_number(phone_input,'en')
+         print(country)
+         service_provider=carrier.name_for_number(phone_input,'en')
+         print(service_provider)
+      except ValueError:
+          print('ValueError!')
+      finally:
+          print('PhoneNumber Fetched By IRCTC Own system')
+
+    def time_t(self):
+      try:
+         vi=input('Yes if want to see time:')
+         if 'yes' in vi:
+           t=time.localtime(time.time())
+           localtime=time.asctime(t)
+           data6='CurrentTime:'+time.asctime(t)
+           print(data6)
+         else:
+            print("wrong_Input_Entered!")
+      except ValueError:
+         print('ValueError!')
+      finally:
+          print('TimeFetchedBy IRCTC Own System!')
+
+    def view_path(self):
+        current_directory=os.getcwd()
+        print('currentlyWorkingOn:',current_directory)
+
+    def draw_spiral_web(self):
+      try:
+        use=input('Want To Draw A Spiral_Web:')
+        if 'yes' in use:
+            # import turtle
+            import turtle
+
+            # defining colors
+            colors = ['red', 'yellow', 'green', 'purple', 'blue', 'orange']
+
+            # setup turtle pen
+            t = turtle.Pen()
+
+            # changes the speed of the turtle
+            t.speed(10)
+
+            # changes the background color
+            turtle.bgcolor("black")
+
+            # make spiral_web
+            for x in range(200):
+                t.pencolor(colors[x % 6])  # setting color
+                t.width(x / 100 + 1)  # setting width
+                t.forward(x)  # moving forward
+                t.left(59)  # moving left
+
+            turtle.done()
+            t.speed(10)
+
+            turtle.bgcolor("black")  # changes the background color
+
+            # make spiral_web
+            for x in range(200):
+                t.pencolor(colors[x % 6])  # setting color
+                t.width(x / 100 + 1)  # setting width
+                t.forward(x)  # moving forward
+                t.left(59)  # moving left
+
+            turtle.done()
+
+            print('Train Drawm Successes\n Please view_your screen')
+        else:
+            print('Ok GoodBye!')
+      except ValueError:
+          print('ValueError:')
+
+
+def main():
+
+   while True:
+    try:
+         intro='Welcome to irctc, book your tickets by our virtual machine!'
+         print(intro.title())
+
+
+         menu='1]purchase_ticket "Express"\n 2]purchase_ticket "local" \n 3]purchase_ticket "HighSpeed" 4]view_wallet\n 5]view_current_path_we are working on\n 6]view_time\n 7]draw_spiral_web by turtle graphics'
+         print(menu.upper())
+
+         cs=int(input('Enter An Index To Go With:'))
+
+         if cs ==1:
+             Ticket().purchase_ticket_express()
+
+         elif cs ==2:
+             Ticket().purchase_ticket_local()
+
+         elif cs ==3:
+             Ticket().purchase_ticket_high_speed()
+
+         elif cs ==4:
+             Ticket().view_wallet()
+
+         elif cs == 5:
+             Ticket().view_path()
+
+         elif cs == 6:
+             Ticket().time_t()
+
+         elif cs == 7:
+             Ticket().draw_spiral_web()
+
+
+    except ValueError:
+         print('ValueError Occurred!')
+
+    except IndexError:
+        print('IndexError Occurred!')
+
+    finally:
+        print('Thanks For Using Our Virtual Machine')
+
+if __name__ == "__main__":
+    main()
